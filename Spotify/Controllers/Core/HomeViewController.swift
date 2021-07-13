@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
     }
     
-    
+    git rm -r --cached .  
     @objc private func didTapSettings() {
         let vc = SettingsViewController()
         vc.title = "Settings"
