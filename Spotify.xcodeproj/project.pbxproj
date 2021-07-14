@@ -42,6 +42,8 @@
 		6849E99E269C17CF00509C40 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849E99D269C17CF00509C40 /* AuthResponse.swift */; };
 		6849E9A1269D662500509C40 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849E9A0269D662500509C40 /* UserProfile.swift */; };
 		6849E9A4269D6F6700509C40 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849E9A3269D6F6700509C40 /* SettingsModels.swift */; };
+		68BAC4D9269EBDF6006D42B0 /* FeaturedPlaylistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BAC4D8269EBDF6006D42B0 /* FeaturedPlaylistCellViewModel.swift */; };
+		68BAC4DC269EBE2E006D42B0 /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BAC4DB269EBE2E006D42B0 /* RecommendedTrackCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		6849E99D269C17CF00509C40 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		6849E9A0269D662500509C40 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6849E9A3269D6F6700509C40 /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		68BAC4D8269EBDF6006D42B0 /* FeaturedPlaylistCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCellViewModel.swift; sourceTree = "<group>"; };
+		68BAC4DB269EBE2E006D42B0 /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
 		824D4FD136D1FB682BE81CCB /* Pods-Spotify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.debug.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.debug.xcconfig"; sourceTree = "<group>"; };
 		83E25136765A12B7A0E58E4C /* Pods-Spotify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spotify.release.xcconfig"; path = "Target Support Files/Pods-Spotify/Pods-Spotify.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				68433740269E0D5800860BC5 /* NewReleasesCellViewModel.swift */,
+				68BAC4D8269EBDF6006D42B0 /* FeaturedPlaylistCellViewModel.swift */,
+				68BAC4DB269EBE2E006D42B0 /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -364,7 +370,9 @@
 				6840C7DD26997DFC0032AFE6 /* Playlist.swift in Sources */,
 				6840C7D426997DCF0032AFE6 /* AuthManager.swift in Sources */,
 				68433741269E0D5800860BC5 /* NewReleasesCellViewModel.swift in Sources */,
+				68BAC4DC269EBE2E006D42B0 /* RecommendedTrackCellViewModel.swift in Sources */,
 				6840C7C226997D640032AFE6 /* PlaylistViewController.swift in Sources */,
+				68BAC4D9269EBDF6006D42B0 /* FeaturedPlaylistCellViewModel.swift in Sources */,
 				6849E99E269C17CF00509C40 /* AuthResponse.swift in Sources */,
 				6840C7B426997D270032AFE6 /* SearchViewController.swift in Sources */,
 				6840C7C826997D740032AFE6 /* ProfileViewController.swift in Sources */,
