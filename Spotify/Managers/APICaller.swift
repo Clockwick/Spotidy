@@ -20,6 +20,61 @@ final class APICaller {
         case failedToGetData
     }
     
+    // MARK: - Albums
+    public func getAlbumDetails(for album: Album, completion: @escaping(Result<AlbumDetailsResponse, Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/albums/" + album.id),
+                      type: .GET)
+        { (request) in
+            let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+//                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let result = try JSONDecoder().decode(AlbumDetailsResponse.self, from: data)
+                    print(result)
+                    completion(.success(result))
+                }
+                catch {
+                    print(error.localizedDescription)
+                    completion(.failure(APIError.failedToGetData))
+                }
+            }
+            task.resume()
+        }
+        
+    }
+    
+    // MARK: - Playlists
+    
+    public func getPlaylistDetails(for playlist: Playlist, completion: @escaping(Result<PlaylistDetailsResponse, Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/playlists/" + playlist.id),
+                      type: .GET)
+        { (request) in
+            let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+//                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    let result = try JSONDecoder().decode(PlaylistDetailsResponse.self, from: data)
+//                    print(result)
+                    completion(.success(result))
+                }
+                catch {
+                    print(error.localizedDescription)
+                    completion(.failure(APIError.failedToGetData))
+                }
+            }
+            task.resume()
+        }
+        
+    }
+    
+    // MARK: - Profile
+    
     public func getCurrentUserProfile(completion: @escaping ((Result<UserProfile, Error>) -> Void)) {
         createRequest(with: URL(string: Constants.baseAPIURL + "/me"), type: .GET) { (baseRequest) in
             let task = URLSession.shared.dataTask(with: baseRequest) { data , _ , error in
@@ -88,7 +143,7 @@ final class APICaller {
                 do {
 //                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     let result = try JSONDecoder().decode(RecommendationResponse.self, from: data)
-                    print("Result : ", result)
+//                    print("Result : ", result)
                     completion(.success(result))
                     
                 }
