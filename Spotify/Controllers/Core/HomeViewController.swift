@@ -292,7 +292,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
             
-            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2, bottom: 1, trailing: 2)
             
             // Vertical Group in horizontal group
             let group = NSCollectionLayoutGroup.vertical(
