@@ -83,8 +83,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
-        //resultsController.update(with: results)
-        //Perform search
+        
+        
+        
+        
         
     }
 
