@@ -12,7 +12,6 @@ class AuthManager {
     
     private var refreshingToken: Bool = false
     
-    
     private init() {}
     
     public var signInURL: URL? {
