@@ -20,6 +20,8 @@ class LibraryPlaylistsViewController: UIViewController {
         return table
     }()
     
+    public var selectionHandler: ((Playlist) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +32,15 @@ class LibraryPlaylistsViewController: UIViewController {
         setUpNoPlaylistsViews()
         fetchPlaylists()
         
+        if selectionHandler != nil {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapClose))
+        }
+        
     }
     
+    @objc private func didTapClose() {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     private func fetchPlaylists() {
@@ -99,10 +108,12 @@ class LibraryPlaylistsViewController: UIViewController {
             APICaller.shared.createPlaylist(with: text) { (success) in
                 if success {
                     // Refresh list of playlists
+                    HapticManager.shared.vibrate(for: .success)
                     self.fetchPlaylists()
                 }
                 else {
                     print("Failed to create playlist")
+                    HapticManager.shared.vibrate(for: .error)
                     
                 }
             }
@@ -135,8 +146,15 @@ extension LibraryPlaylistsViewController: UITableViewDelegate, UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        HapticManager.shared.vibrateForSelection()
         let playlist = playlists[indexPath.row]
+        guard selectionHandler == nil else {
+            selectionHandler?(playlist)
+            dismiss(animated: true, completion: nil)
+            return
+        }
         let vc = PlaylistViewController(playlist: playlist)
+        vc.isOwner = true
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }

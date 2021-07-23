@@ -43,8 +43,8 @@ class LibraryViewController: UIViewController {
     private func addChildren() {
         addChild(albumsVC)
         scrollView.addSubview(albumsVC.view)
-        playlistsVC.view.frame = CGRect(x: view.width, y: 0, width: scrollView.width, height: scrollView.height)
-        playlistsVC.didMove(toParent: self)
+        albumsVC.view.frame = CGRect(x: view.width, y: 0, width: scrollView.width, height: scrollView.height)
+        albumsVC.didMove(toParent: self)
         
         addChild(playlistsVC)
         scrollView.addSubview(playlistsVC.view)

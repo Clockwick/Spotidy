@@ -70,6 +70,41 @@ class AlbumViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
         collectionView.dataSource = self
+        fetchAlbums()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapActions))
+        
+    }
+    
+    @objc private func didTapActions() {
+        let actionSheet = UIAlertController(title: album.name, message: "Action", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Save Album", style: .default, handler: { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+            APICaller.shared.saveAlbum(album: strongSelf.album) {  (success) in
+                if success {
+                    HapticManager.shared.vibrate(for: .success)
+                    NotificationCenter.default.post(name: .albumSavedNotification, object: nil)
+                }
+                else {
+                    HapticManager.shared.vibrate(for: .error)
+                }
+            }
+        }))
+        
+        present(actionSheet, animated: true)
+    }
+    
+    private var viewModels = [AlbumCollectionViewCellViewModel]()
+        
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.frame = view.bounds
+    }
+    
+    private func fetchAlbums() {
         APICaller.shared.getAlbumDetails(for: album) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -87,19 +122,7 @@ class AlbumViewController: UIViewController {
                 }
             }
         }
-        
-        
-        
     }
-    
-    private var viewModels = [AlbumCollectionViewCellViewModel]()
-        
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-    }
-    
 
 }
 
